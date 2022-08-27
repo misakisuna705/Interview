@@ -24,6 +24,9 @@
             * [pointer](#pointer-2)
             * [reference](#reference-2)
         + [return](#return-1)
+            * [variable](#variable-3)
+            * [pointer](#pointer-3)
+            * [reference](#reference-3)
         + [callee](#callee-1)
 
 <!-- vim-markdown-toc -->
@@ -173,5 +176,28 @@ void func(const int& ref) {
 ```
 
 #### return
+
+##### variable
+
+-   (null)
+
+##### pointer
+
+-   指標不能改變指向的函數回傳值
+
+```cpp
+const int* func() { // 或 int const* func() {
+    static int var = 0;
+
+    return &var;
+}
+
+const int* ptr = func();
+*ptr = 1;（X）
+```
+
+##### reference
+
+-   (todo)
 
 #### callee
