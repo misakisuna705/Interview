@@ -2,21 +2,22 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [variable](#variable)
-    - [value](#value)
-    - [pointer](#pointer)
-    - [reference](#reference)
-* [function](#function)
-    - [parameter](#parameter)
-        + [call by value](#call-by-value)
-        + [call by value of pointer](#call-by-value-of-pointer)
-        + [call by value of reference](#call-by-value-of-reference)
-    - [return](#return)
-        + [return by value](#return-by-value)
-        + [return by value of pointer](#return-by-value-of-pointer)
-        + [return by value of reference](#return-by-value-of-reference)
-* [class](#class)
-    - [member function](#member-function)
+* [object](#object)
+    - [variable](#variable)
+        + [value](#value)
+        + [pointer](#pointer)
+        + [reference](#reference)
+    - [function](#function)
+        + [parameter](#parameter)
+            * [call by value](#call-by-value)
+            * [call by value of pointer](#call-by-value-of-pointer)
+            * [call by value of reference](#call-by-value-of-reference)
+        + [return](#return)
+            * [return by value](#return-by-value)
+            * [return by value of pointer](#return-by-value-of-pointer)
+            * [return by value of reference](#return-by-value-of-reference)
+    - [class](#class)
+        + [member function](#member-function)
 * [const](#const)
     - [variable](#variable-1)
         + [value](#value-1)
@@ -40,20 +41,23 @@
 
 ---
 
-## variable
+## object
+
+### variable
 
 -   在執行階段有明確資料的儲存區域
 -   在生命週期中有對應的記憶體位址
 
-### value
+#### value
 
 -   (todo)
 
-### pointer
+#### pointer
 
 -   在物件的生命週期內指向物件位址
+-   只能加減，不能乘除
 
-### reference
+#### reference
 
 -   參考變數在宣告時，就要初始化所參考的變數
 
@@ -68,11 +72,11 @@ int &ref = var1;
 &ref = var2; //（X）
 ```
 
-## function
+### function
 
-### parameter
+#### parameter
 
-#### call by value
+##### call by value
 
 -   複製外部變數的值當參數傳入函數
 
@@ -83,7 +87,7 @@ void func(int var) {
 }
 ```
 
-#### call by value of pointer
+##### call by value of pointer
 
 -   取得外部變數的位址當參數傳入函數
 
@@ -95,7 +99,7 @@ void func(int* ptr) {
 }
 ```
 
-#### call by value of reference
+##### call by value of reference
 
 ```cpp
 void func(int& ref) {
@@ -104,13 +108,13 @@ void func(int& ref) {
 }
 ```
 
-### return
+#### return
 
-#### return by value
+##### return by value
 
 -   函數回傳複製的函數回傳值
 
-#### return by value of pointer
+##### return by value of pointer
 
 -   函數回傳值必須保留變數
 
@@ -122,7 +126,7 @@ int* func() {
 }
 ```
 
-#### return by value of reference
+##### return by value of reference
 
 -   函數回傳值必須保留變數
 
@@ -134,9 +138,9 @@ int& func() {
 }
 ```
 
-## class
+### class
 
-### member function
+#### member function
 
 -   (todo)
 
