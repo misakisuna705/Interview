@@ -283,16 +283,15 @@ class Cls {
 
 ## pointer vs. array
 
--   不能互換
+-   array 沒完整宣告時（沒明確空間），可以換成 pointer
+-   array 有完整宣告時（有明確空間），不能換成 pointer
 
 -   array 在宣告中有 extern，不能換成 pointer
--   array 在宣告中有明確空間，不能換成 pointer
--   array 在宣告中沒有明確空間，可以互換
 
--   在表達式中，可以互換
+-   兩者在表達式中，可以互換
 
 ```cpp
-arr[1]; // *(arr + 1)
+arr[1]; // 等同於 1[arr] 以及 *(arr + 1)
 ```
 
 ## define vs. const
