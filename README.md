@@ -3,37 +3,38 @@
 <!-- vim-markdown-toc GFM -->
 
 * [variable](#variable)
-    - [value](#value)
+    - [object](#object)
     - [pointer](#pointer)
     - [reference](#reference)
 * [function](#function)
     - [parameter](#parameter)
-        + [call（pass）by value](#callpassby-value)
-        + [call（pass）by pointer（address）](#callpassby-pointeraddress)
-        + [call（pass）by reference](#callpassby-reference)
+        + [call by value](#call-by-value)
+        + [call by value of pointer](#call-by-value-of-pointer)
+        + [call by value of reference](#call-by-value-of-reference)
     - [return](#return)
         + [return by value](#return-by-value)
-        + [return by pointer](#return-by-pointer)
-        + [return by reference](#return-by-reference)
+        + [return by value of pointer](#return-by-value-of-pointer)
+        + [return by value of reference](#return-by-value-of-reference)
 * [class](#class)
     - [member function](#member-function)
 * [const](#const)
     - [variable](#variable-1)
-        + [value](#value-1)
+        + [value](#value)
         + [pointer](#pointer-1)
         + [reference](#reference-1)
     - [function](#function-1)
         + [parameter](#parameter-1)
-            * [call by value](#call-by-value)
-            * [call by pointer（address）](#call-by-pointeraddress)
-            * [call by reference](#call-by-reference)
+            * [call by value](#call-by-value-1)
+            * [call by value of pointer](#call-by-value-of-pointer-1)
+            * [call by value of reference](#call-by-value-of-reference-1)
         + [return](#return-1)
             * [return by value](#return-by-value-1)
-            * [return by pointer](#return-by-pointer-1)
-            * [return by reference](#return-by-reference-1)
+            * [return by value of pointer](#return-by-value-of-pointer-1)
+            * [return by value of reference](#return-by-value-of-reference-1)
     - [class](#class-1)
         + [member function](#member-function-1)
 * [other](#other)
+    - [define vs. const](#define-vs-const)
 
 <!-- vim-markdown-toc -->
 
@@ -41,13 +42,16 @@
 
 ## variable
 
-### value
+-   在執行階段有明確資料的儲存區域
+-   在生命週期中有對應的記憶體位址
+
+### object
 
 -   (todo)
 
 ### pointer
 
--   (todo)
+-   在物件的生命週期內指向物件位址
 
 ### reference
 
@@ -68,7 +72,7 @@ int &ref = var1;
 
 ### parameter
 
-#### call（pass）by value
+#### call by value
 
 -   複製外部變數的值當參數傳入函數
 
@@ -79,7 +83,7 @@ void func(int var) {
 }
 ```
 
-#### call（pass）by pointer（address）
+#### call by value of pointer
 
 -   取得外部變數的位址當參數傳入函數
 
@@ -91,7 +95,7 @@ void func(int* ptr) {
 }
 ```
 
-#### call（pass）by reference
+#### call by value of reference
 
 ```cpp
 void func(int& ref) {
@@ -106,7 +110,7 @@ void func(int& ref) {
 
 -   函數回傳複製的函數回傳值
 
-#### return by pointer
+#### return by value of pointer
 
 -   函數回傳值必須保留變數
 
@@ -118,7 +122,7 @@ int* func() {
 }
 ```
 
-#### return by reference
+#### return by value of reference
 
 -   函數回傳值必須保留變數
 
@@ -190,7 +194,7 @@ ref = 0; //（X）
 
 -   (null)
 
-##### call by pointer（address）
+##### call by value of pointer
 
 -   指標不能改變指向的變數存值
 
@@ -200,7 +204,7 @@ void func(const int * ptr) { // 或 void func(int const * ptr);
 }
 ```
 
-##### call by reference
+##### call by value of reference
 
 -   參考不能改變參考的變數存值
 
@@ -216,7 +220,7 @@ void func(const int& ref) {
 
 -   (null)
 
-##### return by pointer
+##### return by value of pointer
 
 -   指標不能改變指向的函數回傳值
 
@@ -231,7 +235,7 @@ const int* ptr = func();
 *ptr = 1; //（X）
 ```
 
-##### return by reference
+##### return by value of reference
 
 -   (null)
 
@@ -257,6 +261,8 @@ class Cls {
 ```
 
 ## other
+
+### define vs. const
 
 -   define 在預處理階段已被展開，編譯執行階段不再存在
 -   const 在編譯階段被分配記憶體空間，機制同一般變數
