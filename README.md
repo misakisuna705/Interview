@@ -102,7 +102,7 @@ void func(int& ref) {
 
 #### return by value
 
--   (null)
+-   函數回傳複製的函數回傳值
 
 #### return by pointer
 
