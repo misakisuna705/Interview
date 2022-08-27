@@ -16,6 +16,7 @@
         + [return by pointer](#return-by-pointer)
         + [return by reference](#return-by-reference)
 * [class](#class)
+    - [member function](#member-function)
 * [const](#const)
     - [variable](#variable-1)
         + [value](#value-1)
@@ -31,7 +32,8 @@
             * [return by pointer](#return-by-pointer-1)
             * [return by reference](#return-by-reference-1)
     - [class](#class-1)
-        + [member function](#member-function)
+        + [member function](#member-function-1)
+* [other](#other)
 
 <!-- vim-markdown-toc -->
 
@@ -130,6 +132,8 @@ int& func() {
 
 ## class
 
+### member function
+
 -   (todo)
 
 ## const
@@ -137,14 +141,6 @@ int& func() {
 ### variable
 
 #### value
-
--   define 在預處理階段已被展開，編譯執行階段不再存在
--   const 在編譯階段被分配記憶體空間，機制同一般變數
-
-```cpp
-#define VAR 0
-const var = 0;
-```
 
 -   變數存值不能被改變
 
@@ -258,4 +254,14 @@ class Cls {
         void func2() {
         }
 };
+```
+
+## other
+
+-   define 在預處理階段已被展開，編譯執行階段不再存在
+-   const 在編譯階段被分配記憶體空間，機制同一般變數
+
+```cpp
+#define VAR 0
+const var = 0;
 ```
