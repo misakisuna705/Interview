@@ -7,7 +7,6 @@
         - [pointer](#pointer)
         - [reference](#reference)
     * [common](#common)
-        - [variable](#variable)
         - [function](#function)
             + [value](#value-1)
                 * [parameter](#parameter)
@@ -22,7 +21,7 @@
         - [class](#class)
             + [member function](#member-function)
     * [const](#const)
-        - [variable](#variable-1)
+        - [variable](#variable)
             + [value](#value-2)
             + [pointer](#pointer-2)
             + [reference](#reference-1)
@@ -38,6 +37,7 @@
         - [class](#class-1)
             + [member function](#member-function-1)
 + [other](#other)
+    * [pointer vs. array](#pointer-vs-array)
     * [define vs. const](#define-vs-const)
 
 <!-- vim-markdown-toc -->
@@ -75,10 +75,6 @@ int &ref = var1;
 ```
 
 ## common
-
-### variable
-
--   (todo)
 
 ### function
 
@@ -277,6 +273,20 @@ class Cls {
 ```
 
 # other
+
+## pointer vs. array
+
+-   不能互換
+
+-   array 在宣告中有 extern，不能換成 pointer
+-   array 在宣告中有明確空間，不能換成 pointer
+-   array 在宣告中沒有明確空間，可以互換
+
+-   在表達式中，可以互換
+
+```cpp
+arr[1]; // *(arr + 1)
+```
 
 ## define vs. const
 
