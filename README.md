@@ -138,6 +138,14 @@ int& func() {
 
 #### value
 
+-   define 在預處理階段已被展開，編譯執行階段不再存在
+-   const 在編譯階段被分配記憶體空間，機制同一般變數
+
+```cpp
+#define VAR 0
+const var = 0;
+```
+
 -   變數存值不能被改變
 
 ```cpp
