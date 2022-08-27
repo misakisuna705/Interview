@@ -9,9 +9,12 @@
 * [function](#function)
     - [parameter](#parameter)
         + [call（pass）by value](#callpassby-value)
-        + [call（pass）by value of pointer（call（pass）by address）](#callpassby-value-of-pointercallpassby-address)
-        + [call（pass）by value of reference（call（pass）by reference）](#callpassby-value-of-referencecallpassby-reference)
+        + [call（pass）by pointer（address）](#callpassby-pointeraddress)
+        + [call（pass）by reference](#callpassby-reference)
     - [return](#return)
+        + [return by value](#return-by-value)
+        + [return by pointer](#return-by-pointer)
+        + [return by reference](#return-by-reference)
     - [callee](#callee)
 * [const](#const)
     - [common](#common-1)
@@ -20,13 +23,13 @@
         + [reference](#reference-1)
     - [function](#function-1)
         + [parameter](#parameter-1)
-            * [variable](#variable-2)
-            * [pointer](#pointer-2)
-            * [reference](#reference-2)
+            * [call by value](#call-by-value)
+            * [call by pointer（address）](#call-by-pointeraddress)
+            * [call by reference](#call-by-reference)
         + [return](#return-1)
-            * [variable](#variable-3)
-            * [pointer](#pointer-3)
-            * [reference](#reference-3)
+            * [return by value](#return-by-value-1)
+            * [return by pointer](#return-by-pointer-1)
+            * [return by reference](#return-by-reference-1)
         + [callee](#callee-1)
 
 <!-- vim-markdown-toc -->
@@ -73,7 +76,7 @@ void func(int var) {
 }
 ```
 
-#### call（pass）by value of pointer（call（pass）by address）
+#### call（pass）by pointer（address）
 
 -   取得外部變數的位址當參數傳入函數
 
@@ -85,7 +88,7 @@ void func(int* ptr) {
 }
 ```
 
-#### call（pass）by value of reference（call（pass）by reference）
+#### call（pass）by reference
 
 ```cpp
 void func(int& ref) {
@@ -96,7 +99,33 @@ void func(int& ref) {
 
 ### return
 
--   (todo)
+#### return by value
+
+-   (null)
+
+#### return by pointer
+
+-   函數回傳值必須保留變數
+
+```cpp
+int* func() {
+    static int var = 0; // int var = 0（X）
+
+    return &var;
+}
+```
+
+#### return by reference
+
+-   函數回傳值必須保留變數
+
+```cpp
+int& func() {
+    static int var = 0; // int var = 0（X）
+    
+    return var;
+}
+```
 
 ### callee
 
@@ -112,6 +141,7 @@ void func(int& ref) {
 
 ```cpp
 const int var; // 或 int const var;
+var = 1; //（X）
 ```
 
 #### pointer
@@ -151,11 +181,11 @@ ref = 0; //（X）
 
 #### parameter
 
-##### variable
+##### call by value
 
 -   (null)
 
-##### pointer
+##### call by pointer（address）
 
 -   指標不能改變指向的變數存值
 
@@ -165,7 +195,7 @@ void func(const int * ptr) { // 或 void func(int const * ptr);
 }
 ```
 
-##### reference
+##### call by reference
 
 -   參考不能改變參考的變數存值
 
@@ -177,11 +207,11 @@ void func(const int& ref) {
 
 #### return
 
-##### variable
+##### return by value
 
 -   (null)
 
-##### pointer
+##### return by pointer
 
 -   指標不能改變指向的函數回傳值
 
@@ -193,11 +223,11 @@ const int* func() { // 或 int const* func() {
 }
 
 const int* ptr = func();
-*ptr = 1;（X）
+*ptr = 1; //（X）
 ```
 
-##### reference
+##### return by reference
 
--   (todo)
+-   (null)
 
 #### callee
