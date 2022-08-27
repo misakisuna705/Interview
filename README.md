@@ -286,7 +286,7 @@ class Cls {
 -   array 沒完整宣告時（沒明確空間），可以換成 pointer
 -   array 有完整宣告時（有明確空間），不能換成 pointer
 
--   array 在宣告中有 extern，不能換成 pointer
+-   array 在宣告中，若有 extern，不能換成 pointer
 
 -   兩者在表達式中，可以互換
 
