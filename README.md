@@ -3,7 +3,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [variable](#variable)
-    - [object](#object)
+    - [value](#value)
     - [pointer](#pointer)
     - [reference](#reference)
 * [function](#function)
@@ -19,7 +19,7 @@
     - [member function](#member-function)
 * [const](#const)
     - [variable](#variable-1)
-        + [value](#value)
+        + [value](#value-1)
         + [pointer](#pointer-1)
         + [reference](#reference-1)
     - [function](#function-1)
@@ -45,7 +45,7 @@
 -   在執行階段有明確資料的儲存區域
 -   在生命週期中有對應的記憶體位址
 
-### object
+### value
 
 -   (todo)
 
