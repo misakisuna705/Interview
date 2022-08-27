@@ -2,8 +2,8 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [common](#common)
-    - [variable](#variable)
+* [variable](#variable)
+    - [value](#value)
     - [pointer](#pointer)
     - [reference](#reference)
 * [function](#function)
@@ -15,10 +15,9 @@
         + [return by value](#return-by-value)
         + [return by pointer](#return-by-pointer)
         + [return by reference](#return-by-reference)
-    - [callee](#callee)
 * [const](#const)
-    - [common](#common-1)
-        + [variable](#variable-1)
+    - [variable](#variable-1)
+        + [value](#value-1)
         + [pointer](#pointer-1)
         + [reference](#reference-1)
     - [function](#function-1)
@@ -30,15 +29,16 @@
             * [return by value](#return-by-value-1)
             * [return by pointer](#return-by-pointer-1)
             * [return by reference](#return-by-reference-1)
-        + [callee](#callee-1)
+    - [class](#class)
+        + [member function](#member-function)
 
 <!-- vim-markdown-toc -->
 
 ---
 
-## common
+## variable
 
-### variable
+### value
 
 -   (todo)
 
@@ -122,20 +122,18 @@ int* func() {
 ```cpp
 int& func() {
     static int var = 0; // int var = 0（X）
-    
+
     return var;
 }
 ```
-
-### callee
 
 -   (todo)
 
 ## const
 
-### common
+### variable
 
-#### variable
+#### value
 
 -   變數存值不能被改變
 
@@ -230,4 +228,23 @@ const int* ptr = func();
 
 -   (null)
 
-#### callee
+### class
+
+#### member function
+
+-   成員函數不能改變變數物件，也不能呼叫非 const 成員函數
+
+```cpp
+class Cls {
+    public:
+        int var = 0;
+
+        void func1() const{
+            var = 1; //（X）
+            func2(); //（X）
+        }
+
+        void func2() {
+        }
+};
+```
