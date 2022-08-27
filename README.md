@@ -18,13 +18,14 @@
                     - [return by value of pointer](#return-by-value-of-pointer)
                     - [return by value of reference](#return-by-value-of-reference)
             + [pointer](#pointer-1)
+            + [reference](#reference-1)
         - [class](#class)
             + [member function](#member-function)
     * [const](#const)
         - [variable](#variable)
             + [value](#value-2)
             + [pointer](#pointer-2)
-            + [reference](#reference-1)
+            + [reference](#reference-2)
         - [function](#function-1)
             + [parameter](#parameter-1)
                 * [call by value](#call-by-value-1)
@@ -145,6 +146,12 @@ int& func() {
 ```
 
 #### pointer
+
+-   (todo)
+
+#### reference
+
+-   (todo)
 
 ### class
 
