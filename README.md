@@ -15,6 +15,7 @@
         + [return by value](#return-by-value)
         + [return by pointer](#return-by-pointer)
         + [return by reference](#return-by-reference)
+* [class](#class)
 * [const](#const)
     - [variable](#variable-1)
         + [value](#value-1)
@@ -29,7 +30,7 @@
             * [return by value](#return-by-value-1)
             * [return by pointer](#return-by-pointer-1)
             * [return by reference](#return-by-reference-1)
-    - [class](#class)
+    - [class](#class-1)
         + [member function](#member-function)
 
 <!-- vim-markdown-toc -->
@@ -126,6 +127,8 @@ int& func() {
     return var;
 }
 ```
+
+## class
 
 -   (todo)
 
