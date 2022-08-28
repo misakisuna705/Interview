@@ -5,6 +5,7 @@
 * [feature](#feature)
     - [value](#value)
     - [pointer](#pointer)
+        + [array](#array)
     - [reference](#reference)
 * [common](#common)
     - [constant](#constant)
@@ -41,8 +42,8 @@
     - [class](#class-1)
         + [member function](#member-function-1)
 * [other](#other)
-    - [pointer vs. array](#pointer-vs-array)
     - [define vs. const](#define-vs-const)
+    - [cast 與 alignment](#cast-與-alignment)
 
 <!-- vim-markdown-toc -->
 
@@ -62,6 +63,23 @@
 -   在生命週期內指向物件開頭的位址（只能加減，不能乘除)
 -   可指向未完整宣告的物件（如 void 指標）
 -   void 指標無法提取指向的變數存值，必須強制型轉
+
+#### array
+
+-   array 沒完整宣告時（沒明確空間），可以換成 pointer
+-   array 有完整宣告時（有明確空間），不能換成 pointer
+
+-   array 在宣告中，若有 extern，不能換成 pointer
+
+-   兩者在表達式中，可以互換
+
+```cpp
+arr[1]; // 等同於 1[arr] 以及 *(arr + 1)
+
+&arr == arr
+&arr + 1 != arr + 1
+arr + 1 // 等同於 &*(arr+1) 以及 &arr[0] + 1
+```
 
 ### reference
 
@@ -175,6 +193,14 @@ int & func() {
 
 ### constant
 
+-   複製外部變數的值當常數變數的參數傳入函數
+
+```cpp
+void func(const int var) { // 或 void func(int const var) {
+    var = 1; //（X）
+}
+```
+
 -   (null)
 
 ### variable
@@ -230,6 +256,14 @@ ref = 0; //（X）
 -   (null)
 
 ##### call by value of pointer
+
+-   指標不能改變本身存值，即不能改變指向的變數位址
+
+```cpp
+void func(int *const ptr) { // 或 void func(int arr[])
+    // ptr != &ptr 即 arr != &arr，與 common array 不同
+}
+```
 
 -   指標不能改變指向的變數存值
 
@@ -297,23 +331,6 @@ class Cls {
 
 ## other
 
-### pointer vs. array
-
--   array 沒完整宣告時（沒明確空間），可以換成 pointer
--   array 有完整宣告時（有明確空間），不能換成 pointer
-
--   array 在宣告中，若有 extern，不能換成 pointer
-
--   兩者在表達式中，可以互換
-
-```cpp
-arr[1]; // 等同於 1[arr] 以及 *(arr + 1)
-
-&arr == arr
-&arr + 1 != arr + 1
-arr + 1 // 等同於 &*(arr+1) 以及 &arr[0] + 1
-```
-
 ### define vs. const
 
 -   define 在預處理階段已被展開，編譯執行階段不再存在
@@ -323,3 +340,5 @@ arr + 1 // 等同於 &*(arr+1) 以及 &arr[0] + 1
 #define VAR 0
 const var = 0;
 ```
+
+### cast 與 alignment
