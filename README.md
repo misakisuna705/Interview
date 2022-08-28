@@ -42,7 +42,6 @@
     - [class](#class-1)
         + [member function](#member-function-1)
 * [other](#other)
-    - [define vs. const](#define-vs-const)
     - [cast 與 alignment](#cast-與-alignment)
 
 <!-- vim-markdown-toc -->
@@ -191,6 +190,14 @@ int & func() {
 
 ## const
 
+-   const 在編譯階段被分配記憶體空間，機制同一般變數
+-   define 在預處理階段已被展開，編譯執行階段不再存在
+
+```cpp
+#define VAR 0
+const var = 0;
+```
+
 ### constant
 
 -   (null)
@@ -328,15 +335,5 @@ class Cls {
 ```
 
 ## other
-
-### define vs. const
-
--   define 在預處理階段已被展開，編譯執行階段不再存在
--   const 在編譯階段被分配記憶體空間，機制同一般變數
-
-```cpp
-#define VAR 0
-const var = 0;
-```
 
 ### cast 與 alignment
