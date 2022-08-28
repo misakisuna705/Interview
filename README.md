@@ -3,15 +3,13 @@
 <!-- vim-markdown-toc GFM -->
 
 * [feature](#feature)
-    - [value](#value)
-    - [pointer](#pointer)
+* [pointer](#pointer)
         + [array](#array)
     - [reference](#reference)
 * [common](#common)
     - [constant](#constant)
-    - [variable](#variable)
     - [function](#function)
-        + [value](#value-1)
+        + [value](#value)
             * [parameter](#parameter)
                 - [call by value](#call-by-value)
                 - [call by value of pointer](#call-by-value-of-pointer)
@@ -20,27 +18,20 @@
                 - [return by value](#return-by-value)
                 - [return by value of pointer](#return-by-value-of-pointer)
                 - [return by value of reference](#return-by-value-of-reference)
+* [const](#const)
+    - [variable](#variable)
+        + [value](#value-1)
         + [pointer](#pointer-1)
         + [reference](#reference-1)
-    - [class](#class)
-        + [member function](#member-function)
-* [const](#const)
-    - [constant](#constant-1)
-    - [variable](#variable-1)
-        + [value](#value-2)
-        + [pointer](#pointer-2)
-        + [reference](#reference-2)
     - [function](#function-1)
         + [parameter](#parameter-1)
             * [call by value](#call-by-value-1)
             * [call by value of pointer](#call-by-value-of-pointer-1)
             * [call by value of reference](#call-by-value-of-reference-1)
         + [return](#return-1)
-            * [return by value](#return-by-value-1)
             * [return by value of pointer](#return-by-value-of-pointer-1)
-            * [return by value of reference](#return-by-value-of-reference-1)
-    - [class](#class-1)
-        + [member function](#member-function-1)
+    - [class](#class)
+        + [member function](#member-function)
 * [other](#other)
     - [cast 與 alignment](#cast-與-alignment)
 
@@ -53,11 +44,7 @@
 
 ## feature
 
-### value
-
--   (todo)
-
-### pointer
+## pointer
 
 -   在生命週期內指向物件開頭的位址（只能加減，不能乘除)
 -   可指向未完整宣告的物件（如 void 指標）
@@ -101,10 +88,6 @@ int &ref = var1;
 
 -   1.0 是 double 型態
 -   1.0f 是 float 型態
-
-### variable
-
--   (todo)
 
 ### function
 
@@ -174,20 +157,6 @@ int & func() {
 }
 ```
 
-#### pointer
-
--   (todo)
-
-#### reference
-
--   (todo)
-
-### class
-
-#### member function
-
--   (todo)
-
 ## const
 
 -   const 在編譯階段被分配記憶體空間，機制同一般變數
@@ -197,10 +166,6 @@ int & func() {
 #define VAR 0
 const var = 0;
 ```
-
-### constant
-
--   (null)
 
 ### variable
 
@@ -290,10 +255,6 @@ void func(const int &ref) {
 
 #### return
 
-##### return by value
-
--   (null)
-
 ##### return by value of pointer
 
 -   指標不能改變指向的函數回傳值
@@ -308,10 +269,6 @@ const int * func() { // 或 int const * func() {
 const int *ptr = func();
 *ptr = 1; //（X）
 ```
-
-##### return by value of reference
-
--   (null)
 
 ### class
 
