@@ -65,7 +65,7 @@
 -   參考變數在宣告時，就要初始化所參考的變數
 
 ```cpp
-int& ref; //（X）
+int &ref; //（X）
 ```
 
 -   一旦參考變數參考特定變數後，就不能再參考別的變數
@@ -99,7 +99,7 @@ void func(int var) {
 -   取得外部變數的位址當參數傳入函數
 
 ```cpp
-void func(int* ptr) {
+void func(int *ptr) {
     printf("%d\n", *ptr); // 參數提取外部變數存值，更新時改變外部變數存值
     printf("%p\n", (void *)ptr); // 參數存值為外部變數位址
     printf("%p\n", (void *)&ptr); // 參數位址
@@ -109,7 +109,7 @@ void func(int* ptr) {
 ###### call by value of reference
 
 ```cpp
-void func(int& ref) {
+void func(int &ref) {
     printf("%d\n", ref); // 參數提取外部變數存值，更新時改變外部變數存值
     printf("%p\n", (void *)&ref); // 參數位址提取外部變數位址，參數本身只是別名，沒有位址
 }
@@ -126,7 +126,7 @@ void func(int& ref) {
 -   函數回傳值必須保留變數
 
 ```cpp
-int* func() {
+int * func() {
     static int var = 0; // int var = 0（X）
 
     return &var;
@@ -138,7 +138,7 @@ int* func() {
 -   函數回傳值必須保留變數
 
 ```cpp
-int& func() {
+int & func() {
     static int var = 0; // int var = 0（X）
 
     return var;
@@ -177,21 +177,21 @@ var = 1; //（X）
 -   指標不能改變本身存值，即不能改變指向的變數位址
 
 ```cpp
-int* const ptr = &var1;
+int *const ptr = &var1;
 ptr = &var2; //（X）
 ```
 
 -   指標不能改變指向的變數存值
 
 ```cpp
-const int* ptr = &var; // 或 int const* ptr = &var;
+const int *ptr = &var; // 或 int const* ptr = &var;
 *ptr = 0; //（X）
 ```
 
 -   指標不能改變本身存值，也指標不能改變指向的變數存值
 
 ```cpp
-const int* const ptr = &var1;
+const int *const ptr = &var1;
 ptr = &var2; //（X）
 *ptr = 0; //（X）
 ```
@@ -201,7 +201,7 @@ ptr = &var2; //（X）
 -   參考不能改變參考的變數存值
 
 ```
-const int& ref = var;
+const int &ref = var;
 ref = 0; //（X）
 ```
 
@@ -218,7 +218,7 @@ ref = 0; //（X）
 -   指標不能改變指向的變數存值
 
 ```cpp
-void func(const int * ptr) { // 或 void func(int const * ptr);
+void func(const int *ptr) { // 或 void func(int const * ptr);
     *ptr = 0; //（X）
 }
 ```
@@ -228,7 +228,7 @@ void func(const int * ptr) { // 或 void func(int const * ptr);
 -   參考不能改變參考的變數存值
 
 ```cpp
-void func(const int& ref) {
+void func(const int &ref) {
     ref = 0; //（X）
 }
 ```
@@ -244,13 +244,13 @@ void func(const int& ref) {
 -   指標不能改變指向的函數回傳值
 
 ```cpp
-const int* func() { // 或 int const* func() {
+const int * func() { // 或 int const * func() {
     static int var = 0;
 
     return &var;
 }
 
-const int* ptr = func();
+const int *ptr = func();
 *ptr = 1; //（X）
 ```
 
