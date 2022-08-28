@@ -193,14 +193,6 @@ int & func() {
 
 ### constant
 
--   複製外部變數的值當常數變數的參數傳入函數
-
-```cpp
-void func(const int var) { // 或 void func(int const var) {
-    var = 1; //（X）
-}
-```
-
 -   (null)
 
 ### variable
@@ -253,7 +245,13 @@ ref = 0; //（X）
 
 ##### call by value
 
--   (null)
+-   複製外部變數的值當常數變數的參數傳入函數
+
+```cpp
+void func(const int var) { // 或 void func(int const var) {
+    var = 1; //（X）
+}
+```
 
 ##### call by value of pointer
 
