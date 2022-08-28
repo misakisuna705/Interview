@@ -3,7 +3,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [feature](#feature)
-* [pointer](#pointer)
+    - [pointer](#pointer)
         + [array](#array)
     - [reference](#reference)
 * [common](#common)
@@ -44,7 +44,7 @@
 
 ## feature
 
-## pointer
+### pointer
 
 -   在生命週期內指向物件開頭的位址（只能加減，不能乘除)
 -   可指向未完整宣告的物件（如 void 指標）
