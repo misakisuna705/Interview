@@ -7,6 +7,8 @@
     - [pointer](#pointer)
     - [reference](#reference)
 * [common](#common)
+    - [constant](#constant)
+    - [variable](#variable)
     - [function](#function)
         + [value](#value-1)
             * [parameter](#parameter)
@@ -22,7 +24,8 @@
     - [class](#class)
         + [member function](#member-function)
 * [const](#const)
-    - [variable](#variable)
+    - [constant](#constant-1)
+    - [variable](#variable-1)
         + [value](#value-2)
         + [pointer](#pointer-2)
         + [reference](#reference-2)
@@ -76,6 +79,15 @@ int &ref = var1;
 ```
 
 ## common
+
+### constant
+
+-   1.0 是 double 型態
+-   1.0f 是 float 型態
+
+### variable
+
+-   (todo)
 
 ### function
 
@@ -160,6 +172,10 @@ int & func() {
 -   (todo)
 
 ## const
+
+### constant
+
+-   (null)
 
 ### variable
 
