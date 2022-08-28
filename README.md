@@ -2,44 +2,44 @@
 
 <!-- vim-markdown-toc GFM -->
 
-    * [feature](#feature)
-        - [value](#value)
-        - [pointer](#pointer)
-        - [reference](#reference)
-    * [common](#common)
-        - [function](#function)
-            + [value](#value-1)
-                * [parameter](#parameter)
-                    - [call by value](#call-by-value)
-                    - [call by value of pointer](#call-by-value-of-pointer)
-                    - [call by value of reference](#call-by-value-of-reference)
-                * [return](#return)
-                    - [return by value](#return-by-value)
-                    - [return by value of pointer](#return-by-value-of-pointer)
-                    - [return by value of reference](#return-by-value-of-reference)
-            + [pointer](#pointer-1)
-            + [reference](#reference-1)
-        - [class](#class)
-            + [member function](#member-function)
-    * [const](#const)
-        - [variable](#variable)
-            + [value](#value-2)
-            + [pointer](#pointer-2)
-            + [reference](#reference-2)
-        - [function](#function-1)
-            + [parameter](#parameter-1)
-                * [call by value](#call-by-value-1)
-                * [call by value of pointer](#call-by-value-of-pointer-1)
-                * [call by value of reference](#call-by-value-of-reference-1)
-            + [return](#return-1)
-                * [return by value](#return-by-value-1)
-                * [return by value of pointer](#return-by-value-of-pointer-1)
-                * [return by value of reference](#return-by-value-of-reference-1)
-        - [class](#class-1)
-            + [member function](#member-function-1)
-+ [other](#other)
-    * [pointer vs. array](#pointer-vs-array)
-    * [define vs. const](#define-vs-const)
+* [feature](#feature)
+    - [value](#value)
+    - [pointer](#pointer)
+    - [reference](#reference)
+* [common](#common)
+    - [function](#function)
+        + [value](#value-1)
+            * [parameter](#parameter)
+                - [call by value](#call-by-value)
+                - [call by value of pointer](#call-by-value-of-pointer)
+                - [call by value of reference](#call-by-value-of-reference)
+            * [return](#return)
+                - [return by value](#return-by-value)
+                - [return by value of pointer](#return-by-value-of-pointer)
+                - [return by value of reference](#return-by-value-of-reference)
+        + [pointer](#pointer-1)
+        + [reference](#reference-1)
+    - [class](#class)
+        + [member function](#member-function)
+* [const](#const)
+    - [variable](#variable)
+        + [value](#value-2)
+        + [pointer](#pointer-2)
+        + [reference](#reference-2)
+    - [function](#function-1)
+        + [parameter](#parameter-1)
+            * [call by value](#call-by-value-1)
+            * [call by value of pointer](#call-by-value-of-pointer-1)
+            * [call by value of reference](#call-by-value-of-reference-1)
+        + [return](#return-1)
+            * [return by value](#return-by-value-1)
+            * [return by value of pointer](#return-by-value-of-pointer-1)
+            * [return by value of reference](#return-by-value-of-reference-1)
+    - [class](#class-1)
+        + [member function](#member-function-1)
+* [other](#other)
+    - [pointer vs. array](#pointer-vs-array)
+    - [define vs. const](#define-vs-const)
 
 <!-- vim-markdown-toc -->
 
@@ -279,9 +279,9 @@ class Cls {
 };
 ```
 
-# other
+## other
 
-## pointer vs. array
+### pointer vs. array
 
 -   array 沒完整宣告時（沒明確空間），可以換成 pointer
 -   array 有完整宣告時（有明確空間），不能換成 pointer
@@ -295,7 +295,7 @@ arr[1]; // 等同於 1[arr] 以及 *(arr + 1)
 &arr == arr（?
 ```
 
-## define vs. const
+### define vs. const
 
 -   define 在預處理階段已被展開，編譯執行階段不再存在
 -   const 在編譯階段被分配記憶體空間，機制同一般變數
