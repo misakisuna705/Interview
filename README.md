@@ -292,7 +292,10 @@ class Cls {
 
 ```cpp
 arr[1]; // 等同於 1[arr] 以及 *(arr + 1)
-&arr == arr（?
+
+&arr == arr
+&arr + 1 != arr + 1
+arr + 1 // 等同於 &*(arr+1) 以及 &arr[0] + 1
 ```
 
 ### define vs. const
