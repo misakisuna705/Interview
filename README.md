@@ -5,6 +5,7 @@
 * [feature](#feature)
     - [pointer](#pointer)
         + [array](#array)
+        + [string](#string)
     - [reference](#reference)
 * [common](#common)
     - [constant](#constant)
@@ -65,6 +66,15 @@ arr[1]; // 等同於 1[arr] 以及 *(arr + 1)
 &arr == arr
 &arr + 1 != arr + 1
 arr + 1 // 等同於 &*(arr+1) 以及 &arr[0] + 1
+```
+
+#### string
+
+```cpp
+char *str = "" // 指向 static 位址
+*(str+1) = 'x'; //（X）
+
+char str[] = "" // 指向 stack 位址
 ```
 
 ### reference
@@ -230,7 +240,7 @@ void func(const int var) { // 或 void func(int const var) {
 -   指標不能改變本身存值，即不能改變指向的變數位址
 
 ```cpp
-void func(int *const ptr) { // 或 void func(int arr[])
+void func(int *const ptr) {
     // ptr != &ptr 即 arr != &arr，與 common array 不同
 }
 ```
