@@ -48,8 +48,9 @@
 ### pointer
 
 -   在生命週期內指向物件開頭的位址（只能加減，不能乘除)
--   可指向未完整宣告的物件（如 void 指標）
+-   可指向未完整宣告的物件
 -   void 指標無法提取指向的變數存值，必須強制型轉
+-   void 指標與 char 指標有相同的 alignment
 
 #### array
 
@@ -121,7 +122,7 @@ void func(int var) {
 -   取得外部變數的位址當參數傳入函數
 
 ```cpp
-void func(int *ptr) {
+void func(int *ptr) { // 或 void func(int ptr[]) {
     printf("%d\n", *ptr); // 參數提取外部變數存值，更新時改變外部變數存值
     printf("%p\n", (void *)ptr); // 參數存值為外部變數位址
     printf("%p\n", (void *)&ptr); // 參數位址
