@@ -12,15 +12,17 @@
             * [declaration](#declaration)
             * [expression](#expression)
     - [string](#string)
+        + [pointer](#pointer-2)
+            * [declaration](#declaration-1)
     - [function](#function)
         + [value](#value)
-            * [declaration](#declaration-1)
+            * [declaration](#declaration-2)
                 - [parameter](#parameter)
                 - [return](#return)
 * [const](#const)
     - [variable](#variable)
         + [value](#value-1)
-        + [pointer](#pointer-2)
+        + [pointer](#pointer-3)
         + [reference](#reference-1)
     - [function](#function-1)
         + [parameter](#parameter-1)
@@ -100,11 +102,18 @@ arr + 1 == &*(arr+1) == &arr[0] + 1
 
 ### string
 
-```cpp
-char *str = "" // 指向 static 位址
-*(str+1) = 'x'; //（X）
+#### pointer
 
-char str[] = "" // 指向 stack 位址
+##### declaration
+
+```cpp
+char *str = ""; // 指標指向常字串（process 的 static 中，唯讀）
+*(str+1) = 'x'; //（X）
+```
+
+```cpp
+char str[] = "" // 陣列儲存字串值（process 的 stack 中，可改）
+str[1] = 'o';
 ```
 
 ### function
