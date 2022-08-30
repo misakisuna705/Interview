@@ -97,8 +97,8 @@ arr == &arr[0]; // 使用陣列名稱時，陣列名稱會自動轉成指標變�
 arr + 1 == &*(arr+1) == &arr[0] + 1
 *(arr + 1) == arr[1] == 1[arr]
 
-&arr == arr; // 對陣列名稱取址時，陣列名稱代表整個陣列所在位址，剛好等同於陣列第一個元素所在位址
-&arr + 1 != arr + 1 // 對陣列名稱取址時，代表整個陣列；使用陣列名稱時，代表一個元素
+&arr == arr; // 對陣列名稱取址時，陣列名稱代表整個陣列所在位址（pointer to array），剛好等同於陣列第一個元素所在位址（pointer to element type）
+&arr + 1 != arr + 1 // 對陣列名稱取址時，代表整個陣列（pointer to array）；使用陣列名稱時，代表一個元素（pointer to element type）
 ```
 
 ### string
