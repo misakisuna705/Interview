@@ -7,11 +7,14 @@
     - [reference](#reference)
 * [common](#common)
     - [constant](#constant)
+        + [float](#float)
+        + [double](#double)
+        + [string](#string)
     - [array](#array)
         + [pointer](#pointer-1)
             * [declaration](#declaration)
             * [expression](#expression)
-    - [string](#string)
+    - [string](#string-1)
         + [pointer](#pointer-2)
             * [declaration](#declaration-1)
     - [function](#function)
@@ -71,9 +74,17 @@ int &ref = var1;
 
 ### constant
 
--   放在 process 的 static 中，唯讀
--   1.0 是 double 型態
+#### float
+
 -   1.0f 是 float 型態
+
+#### double
+
+-   1.0 是 double 型態
+
+#### string
+
+-   放在 process 的 static 中，唯讀
 
 ### array
 
