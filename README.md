@@ -200,14 +200,14 @@ var = 1; //（X）
 
 #### pointer
 
--   指標不能改變本身存值，即不能改變指向的變數位址
+-   指標不能改變本身存值，即不能改變指向的變數位址（const 在 \* 之後）
 
 ```cpp
 int *const ptr = &var1;
 ptr = &var2; //（X）
 ```
 
--   指標不能改變指向的變數存值
+-   指標不能改變指向的變數存值（const 在 \* 之前）
 
 ```cpp
 const int *ptr = &var; // 或 int const* ptr = &var;
