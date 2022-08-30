@@ -325,3 +325,7 @@ class Cls {
 ## other
 
 ### cast 與 alignment
+
+```cpp
+++(var++); //（X）var++ 回傳 r-value
+```
