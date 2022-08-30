@@ -4,33 +4,31 @@
 
 * [feature](#feature)
     - [pointer](#pointer)
-        + [array](#array)
-        + [string](#string)
     - [reference](#reference)
 * [common](#common)
     - [constant](#constant)
+    - [array](#array)
+        + [pointer](#pointer-1)
+            * [declaration](#declaration)
+            * [expression](#expression)
+    - [string](#string)
     - [function](#function)
         + [value](#value)
-            * [parameter](#parameter)
-                - [call by value](#call-by-value)
-                - [call by value of pointer](#call-by-value-of-pointer)
-                - [call by value of reference](#call-by-value-of-reference)
-            * [return](#return)
-                - [return by value](#return-by-value)
-                - [return by value of pointer](#return-by-value-of-pointer)
-                - [return by value of reference](#return-by-value-of-reference)
+            * [declaration](#declaration-1)
+                - [parameter](#parameter)
+                - [return](#return)
 * [const](#const)
     - [variable](#variable)
         + [value](#value-1)
-        + [pointer](#pointer-1)
+        + [pointer](#pointer-2)
         + [reference](#reference-1)
     - [function](#function-1)
         + [parameter](#parameter-1)
-            * [call by value](#call-by-value-1)
-            * [call by value of pointer](#call-by-value-of-pointer-1)
-            * [call by value of reference](#call-by-value-of-reference-1)
+            * [call by value](#call-by-value)
+            * [call by value of pointer](#call-by-value-of-pointer)
+            * [call by value of reference](#call-by-value-of-reference)
         + [return](#return-1)
-            * [return by value of pointer](#return-by-value-of-pointer-1)
+            * [return by value of pointer](#return-by-value-of-pointer)
     - [class](#class)
         + [member function](#member-function)
 * [other](#other)
@@ -51,34 +49,6 @@
 -   可指向未完整宣告的物件
 -   void 指標無法提取指向的變數存值，必須強制型轉
 -   void 指標與 char 指標有相同的 alignment
-
-#### array
-
--   array 沒完整宣告時（沒明確空間），可以換成 pointer
--   array 有完整宣告時（有明確空間），不能換成 pointer
-
--   array 在宣告中，若有 extern，不能換成 pointer
-
--   兩者在表達式中，可以互換
-
--   array 在編譯階段只確認陣列開頭位址與陣列大小
-
-```cpp
-arr[1]; // 等同於 1[arr] 以及 *(arr + 1)
-
-&arr == arr
-&arr + 1 != arr + 1
-arr + 1 // 等同於 &*(arr+1) 以及 &arr[0] + 1
-```
-
-#### string
-
-```cpp
-char *str = "" // 指向 static 位址
-*(str+1) = 'x'; //（X）
-
-char str[] = "" // 指向 stack 位址
-```
 
 ### reference
 
@@ -102,15 +72,50 @@ int &ref = var1;
 -   1.0 是 double 型態
 -   1.0f 是 float 型態
 
+### array
+
+#### pointer
+
+##### declaration
+
+-   有完整宣告時（有明確空間），不能換成 pointer
+-   沒完整宣告時（沒明確空間），可以換成 pointer（例：function call by value of pointer）
+-   若有 extern（沒分配位址時），不能換成 pointer
+
+##### expression
+
+-   對陣列名稱取址或取值，意義不同
+
+```cpp
+arr == &arr[0]; // 使用陣列名稱時，陣列名稱會自動轉成指標變數，指向陣列第一個元素所在位址
+*arr == arr[0]; // 對陣列名稱取值，會提取陣列第一個元素存值
+
+// array 和 pointer 在表達式中可以互換
+arr + 1 == &*(arr+1) == &arr[0] + 1
+*(arr + 1) == arr[1] == 1[arr]
+
+&arr == arr; // 對陣列名稱取址時，陣列名稱代表整個陣列所在位址，剛好等同於陣列第一個元素所在位址
+&arr + 1 != arr + 1 // 對陣列名稱取址時，代表整個陣列；使用陣列名稱時，代表一個元素
+```
+
+### string
+
+```cpp
+char *str = "" // 指向 static 位址
+*(str+1) = 'x'; //（X）
+
+char str[] = "" // 指向 stack 位址
+```
+
 ### function
 
 #### value
 
-##### parameter
+##### declaration
 
-###### call by value
+###### parameter
 
--   複製外部變數的值當參數傳入函數
+-   call by value（複製外部變數的值當參數傳入函數）
 
 ```cpp
 void func(int var) {
@@ -119,9 +124,7 @@ void func(int var) {
 }
 ```
 
-###### call by value of pointer
-
--   取得外部變數的位址當參數傳入函數
+-   call by value of pointer（取得外部變數的位址當參數傳入函數）
 
 ```cpp
 void func(int *ptr) { // 或 void func(int ptr[]) {
@@ -131,7 +134,7 @@ void func(int *ptr) { // 或 void func(int ptr[]) {
 }
 ```
 
-###### call by value of reference
+-   call by value of reference
 
 ```cpp
 void func(int &ref) {
@@ -140,15 +143,11 @@ void func(int &ref) {
 }
 ```
 
-##### return
+###### return
 
-###### return by value
+-   return by value（函數回傳複製的函數回傳值）
 
--   函數回傳複製的函數回傳值
-
-###### return by value of pointer
-
--   函數回傳值必須保留變數
+-   return by value of pointer（函數回傳值必須為 static 物件）
 
 ```cpp
 int * func() {
@@ -158,9 +157,7 @@ int * func() {
 }
 ```
 
-###### return by value of reference
-
--   函數回傳值必須保留變數
+-   return by value of reference（函數回傳值必須為 static 物件）
 
 ```cpp
 int & func() {
