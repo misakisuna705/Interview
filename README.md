@@ -71,6 +71,7 @@ int &ref = var1;
 
 ### constant
 
+-   放在 process 的 static 中，唯讀
 -   1.0 是 double 型態
 -   1.0f 是 float 型態
 
