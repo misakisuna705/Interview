@@ -2,42 +2,46 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [feature](#feature)
-    - [pointer](#pointer)
-    - [reference](#reference)
-* [common](#common)
-    - [constant](#constant)
-        + [float](#float)
-        + [double](#double)
-        + [string](#string)
-    - [array](#array)
-        + [pointer](#pointer-1)
-            * [declaration](#declaration)
-            * [expression](#expression)
-    - [string](#string-1)
-        + [pointer](#pointer-2)
-            * [declaration](#declaration-1)
-    - [function](#function)
-        + [value](#value)
-            * [declaration](#declaration-2)
-                - [parameter](#parameter)
-                - [return](#return)
-* [const](#const)
-    - [variable](#variable)
-        + [value](#value-1)
-        + [pointer](#pointer-3)
-        + [reference](#reference-1)
-    - [function](#function-1)
-        + [parameter](#parameter-1)
-            * [call by value](#call-by-value)
-            * [call by value of pointer](#call-by-value-of-pointer)
-            * [call by value of reference](#call-by-value-of-reference)
-        + [return](#return-1)
-            * [return by value of pointer](#return-by-value-of-pointer)
-    - [class](#class)
-        + [member function](#member-function)
-* [other](#other)
-    - [cast 與 alignment](#cast-與-alignment)
++ [access](#access)
+    * [value](#value)
+    * [pointer](#pointer)
+    * [reference](#reference)
++ [amount](#amount)
+    * [array](#array)
+        - [declaration](#declaration)
+        - [expression](#expression)
++ [common](#common)
+    * [constant](#constant)
+        - [float](#float)
+        - [double](#double)
+        - [string](#string)
+    * [string](#string-1)
+        - [pointer](#pointer-1)
+            + [declaration](#declaration-1)
+    * [function](#function)
+        - [element](#element)
+            + [value](#value-1)
+                * [declaration](#declaration-2)
+                    - [parameter](#parameter)
+                    - [return](#return)
++ [const](#const)
+    * [variable](#variable)
+        - [value](#value-2)
+        - [pointer](#pointer-2)
+        - [reference](#reference-1)
+    * [function](#function-1)
+        - [parameter](#parameter-1)
+            + [call by value](#call-by-value)
+            + [call by value of pointer](#call-by-value-of-pointer)
+            + [call by value of reference](#call-by-value-of-reference)
+        - [return](#return-1)
+            + [return by value of pointer](#return-by-value-of-pointer)
+    * [class](#class)
+        - [member function](#member-function)
++ [volatile](#volatile)
++ [other](#other)
+    * [cast 與 alignment](#cast-與-alignment)
++ [bitwise operation](#bitwise-operation)
 
 <!-- vim-markdown-toc -->
 
@@ -46,16 +50,18 @@
 -   在執行階段有明確資料的儲存區域
 -   在生命週期中有對應的記憶體位址
 
-## feature
+# access
 
-### pointer
+## value
+
+## pointer
 
 -   在生命週期內指向物件開頭的位址（只能加減，不能乘除)
 -   可指向未完整宣告的物件
 -   void 指標無法提取指向的變數存值，必須強制型轉
 -   void 指標與 char 指標有相同的 alignment
 
-### reference
+## reference
 
 -   參考變數在宣告時，就要初始化所參考的變數
 
@@ -70,33 +76,17 @@ int &ref = var1;
 &ref = var2; //（X）
 ```
 
-## common
+# amount
 
-### constant
+## array
 
-#### float
-
--   1.0f 是 float 型態
-
-#### double
-
--   1.0 是 double 型態
-
-#### string
-
--   放在 process 的 static 中，唯讀
-
-### array
-
-#### pointer
-
-##### declaration
+### declaration
 
 -   有完整宣告時（有明確空間），不能換成 pointer
 -   沒完整宣告時（沒明確空間），可以換成 pointer（例：function call by value of pointer）
 -   若有 extern（沒分配位址時），不能換成 pointer
 
-##### expression
+### expression
 
 -   對陣列名稱取址或取值，意義不同
 
@@ -112,14 +102,30 @@ arr + 1 == &*(arr+1) == &arr[0] + 1
 &arr + 1 != arr + 1 // 對陣列名稱取址時，代表整個陣列（pointer to array）；使用陣列名稱時，代表一個元素（pointer to element type）
 ```
 
+# common
+
+## constant
+
+### float
+
+-   1.0f 是 float 型態
+
+### double
+
+-   1.0 是 double 型態
+
 ### string
 
-#### pointer
+-   放在 process 的 static data segment 中，唯讀
 
-##### declaration
+## string
+
+### pointer
+
+#### declaration
 
 ```cpp
-char *str = ""; // 指標指向常字串（process 的 static 中，唯讀）
+char *str = ""; // 指標指向常字串（process 的 static data segment 中，唯讀）
 *(str+1) = 'x'; //（X）
 ```
 
@@ -128,7 +134,14 @@ char str[] = "" // 陣列儲存字串值（process 的 stack 中，可改）
 str[1] = 'o';
 ```
 
-### function
+```cpp
+char *arr[] = {"Hello", "world"}; // 陣列arr中每個元素為一個指向字串的指標;
+char (*ptr)[]; // 指標ptr指向一個陣列
+```
+
+## function
+
+### element
 
 #### value
 
@@ -188,7 +201,7 @@ int & func() {
 }
 ```
 
-## const
+# const
 
 -   const 在編譯階段被分配記憶體空間，機制同一般變數
 -   define 在預處理階段已被展開，編譯執行階段不再存在
@@ -198,9 +211,9 @@ int & func() {
 const var = 0;
 ```
 
-### variable
+## variable
 
-#### value
+### value
 
 -   變數存值不能被改變
 
@@ -209,7 +222,7 @@ const int var; // 或 int const var;
 var = 1; //（X）
 ```
 
-#### pointer
+### pointer
 
 -   指標不能改變本身存值，即不能改變指向的變數位址（const 在 \* 之後）
 
@@ -233,7 +246,7 @@ ptr = &var2; //（X）
 *ptr = 0; //（X）
 ```
 
-#### reference
+### reference
 
 -   參考不能改變參考的變數存值
 
@@ -242,11 +255,11 @@ const int &ref = var;
 ref = 0; //（X）
 ```
 
-### function
+## function
 
-#### parameter
+### parameter
 
-##### call by value
+#### call by value
 
 -   複製外部變數的值當常數變數的參數傳入函數
 
@@ -256,7 +269,7 @@ void func(const int var) { // 或 void func(int const var) {
 }
 ```
 
-##### call by value of pointer
+#### call by value of pointer
 
 -   指標不能改變本身存值，即不能改變指向的變數位址
 
@@ -274,7 +287,7 @@ void func(const int *ptr) { // 或 void func(int const * ptr);
 }
 ```
 
-##### call by value of reference
+#### call by value of reference
 
 -   參考不能改變參考的變數存值
 
@@ -284,9 +297,9 @@ void func(const int &ref) {
 }
 ```
 
-#### return
+### return
 
-##### return by value of pointer
+#### return by value of pointer
 
 -   指標不能改變指向的函數回傳值
 
@@ -301,9 +314,9 @@ const int *ptr = func();
 *ptr = 1; //（X）
 ```
 
-### class
+## class
 
-#### member function
+### member function
 
 -   成員函數不能改變變數物件，也不能呼叫非 const 成員函數
 
@@ -322,10 +335,23 @@ class Cls {
 };
 ```
 
-## other
+# volatile
 
-### cast 與 alignment
+-   const 控制變數程序內部的行為，volatile 控制變數在程序外部的行為
+-   同時使用 const 和 volatile 時，除了避免變數在程序內部被改變，也避免因存值仍在外部設備暫存器，而被外部設備改變
+
+# other
+
+## cast 與 alignment
 
 ```cpp
 ++(var++); //（X）var++ 回傳 r-value
+```
+
+# bitwise operation
+
+```cpp
+#define setBit(x,n) (x |= (1<<n))
+#define clearBit(x,n) (x &= ~(1<<n))
+#define inverseBit(x,n) (x ^= (1<<n))
 ```
